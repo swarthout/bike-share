@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
-
+declare var google;
 /*
   Generated class for the StationDetail page.
 
@@ -13,6 +13,8 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 })
 export class StationDetailPage {
   station: any;
+  @ViewChild('map') mapElement: ElementRef;
+  map: any;
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, public navParams: NavParams) {
 
     this.station = {}
@@ -21,6 +23,28 @@ export class StationDetailPage {
   ionViewDidLoad() {
     this.station = this.navParams.get("station")
     console.log(this.station)
+    this.loadMap();
+  }
+
+  loadMap() {
+    let latLng = new google.maps.LatLng(this.station.latitude, this.station.longitude);
+
+    let mapOptions = {
+      center: latLng,
+      zoom: 18,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+
+    let marker = new google.maps.Marker({
+          icon: this.station.icon,
+          position: {
+            lat: this.station.latitude,
+            lng: this.station.longitude
+          },
+          map: this.map
+        })
   }
 
   dismiss() {

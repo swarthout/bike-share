@@ -6,9 +6,9 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-buttons start>
-            <button (click)="dismiss()">
+            <button ion-button (click)="dismiss()">
                 <span showWhen="ios">Cancel</span>
                 <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
             </button>
@@ -19,6 +19,18 @@
 </ion-header>
 
 
-<ion-content padding>
-  Hello from Station #{{station.id || ""}}
+<ion-content>
+    <div #map id="map"></div> 
+  <ion-item>
+    <ion-icon color="subtle" large item-left name='bicycle'></ion-icon>
+    <h2>{{station.stationName}}</h2>
+    <p></p>
+  </ion-item>
+  <ion-item>
+    <span ion-text item-left color="secondary" class="item-bold">{{station.availableBikes}} Bikes Available</span>
+    <button ion-button color="primary" clear item-right icon-left>
+      <ion-icon name='navigate'></ion-icon>
+      Navigate
+    </button>
+  </ion-item>
 </ion-content>

@@ -43,19 +43,16 @@ export class HomePage {
     }
 
     this.stations.get().subscribe(stations => {
-      console.log(stations);
       stations.forEach(station => {
-        let icon;
         if (station.availableBikes >= 0 && station.availableBikes < 2) {
-          icon = markerIcons["red"];
+          station.icon = markerIcons["red"];
         } else if (station.availableBikes >= 2 && station.availableBikes < 5) {
-          icon = markerIcons["yellow"];
+          station.icon = markerIcons["yellow"];
         } else {
-          icon = markerIcons["green"];
+          station.icon = markerIcons["green"];
         }
         let marker = new google.maps.Marker({
-          label: String(station.id),
-          icon: icon,
+          icon: station.icon,
           position: {
             lat: station.latitude,
             lng: station.longitude
@@ -63,7 +60,6 @@ export class HomePage {
           map: this.map
         })
         marker.addListener('click', () => {
-          console.log('marker clicked');
           let stationModal = this.modalCtrl.create(StationDetailPage, { "station": station });
           stationModal.present();
         });
