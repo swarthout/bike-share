@@ -1,0 +1,12 @@
+{
+  "name": "bikeShare",
+  "app_id": "",
+  "v2": true,
+  "typescript": true,
+  "proxies": [
+    {
+      "path": "/bikeshare",
+      "proxyUrl": "http://feeds.bayareabikeshare.com"
+    }
+  ]
+}
