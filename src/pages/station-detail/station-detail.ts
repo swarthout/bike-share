@@ -32,7 +32,8 @@ export class StationDetailPage {
     let mapOptions = {
       center: latLng,
       zoom: 18,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      disableDefaultUI: true,
     }
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
